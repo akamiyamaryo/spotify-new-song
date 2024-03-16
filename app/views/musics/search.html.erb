@@ -1,0 +1,18 @@
+<h1>検索結果</h1>
+<%= link_to 'Sign in with Spotify', '/auth/spotify'%>
+  <% if @tracks.present? %>
+    <% @tracks.each do |track| %>
+      <div>
+        <%=[track.artists.first.name, track.name].join('/')%>
+      </div>
+      <div><%=link_to "#{track.uri}","#{track.uri}"%></div>
+      <div><%=track.popularity%></div>
+    <%end%>
+  <%end%>
+    <!--
+    <% @energy.each do |track| %>
+      <div><%=track%></div>
+    <%end%>
+    <% @tempo.each do |track| %>
+      <div><%=track%></div>
+    <%end%> -->
