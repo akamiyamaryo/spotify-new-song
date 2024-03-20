@@ -1,4 +1,16 @@
-<%@tracks_limit.each do |a|%>
-<p><%=a.release_date%></p>
+<%if @tracks_limit.blank?%>
+<p>フォロー中のアーティストの新曲は見つかりませんでした</p>
+<%else%>
+<%@tracks_limit.each do |track|%>
+  <div class="flex">
+    <div class="text-white"><%=track.release_date%></div>
+    <div class="text-white">
+      <%=track.artist_name%>
+    </div>
+    <div class="text-blue-600"><%=link_to "#{track.track_name}","#{track.link}"%></div>
+  </div>
 <%end%>
+<%end%>
+
+
 
