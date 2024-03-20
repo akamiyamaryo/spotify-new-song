@@ -1,18 +1,23 @@
+<%=form_with url: "/search",method: :get,local: true,class: "flex justify-center m-10" do |f|%>
+<div>
+<%=f.text_field :playlist,class: "bg-gray-700 rounded focus:outline-none text-white h-8 text-xs mr-2"%>
+</div>
+<div>
+<%=f.select :genre, ["j-rock","j-pop","hip-hop","anime","chill"],{include_blank: "ジャンルを選択"},class: "bg-gray-700 rounded text-white h-8 text-xs mr-2" %>
+</div>
+<div>
+<%=f.submit "検索する",class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full h-8 text-xs"%>
+</div>
+<%end%>
 <h1>検索結果</h1>
-<%= link_to 'Sign in with Spotify', '/auth/spotify'%>
   <% if @tracks.present? %>
     <% @tracks.each do |track| %>
-      <div>
-        <%=[track.artists.first.name, track.name].join('/')%>
+    <div class="flex">
+      <div class="text-white">
+        <%=track.artists.first.name%>
       </div>
-      <div><%=link_to "#{track.uri}","#{track.uri}"%></div>
-      <div><%=track.popularity%></div>
+      <div class="text-blue-600"><%=link_to "#{track.name}","#{track.uri}"%></div>
+    </div>
     <%end%>
   <%end%>
-    <!--
-    <% @energy.each do |track| %>
-      <div><%=track%></div>
-    <%end%>
-    <% @tempo.each do |track| %>
-      <div><%=track%></div>
-    <%end%> -->
+  <!-- <%= link_to 'Sign in with Spotify', '/auth/spotify'%> -->
