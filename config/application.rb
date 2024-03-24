@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Spotify
 
   class Application < Rails::Application
+    config.i18n.default_locale = :ja 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     RSpotify::authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
