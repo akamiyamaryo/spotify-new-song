@@ -1,6 +1,6 @@
 <%=form_with url: "/search",method: :get,local: true,class: "flex justify-center m-10" do |f|%>
 <div>
-<%=f.text_field :playlist,class: "bg-gray-700 rounded focus:outline-none text-white h-8 text-xs mr-2"%>
+<%=f.text_field :playlist,placeholder: "playlistのリンクを入力",class: "bg-gray-700 rounded focus:outline-none text-white h-8 text-xs mr-2"%>
 </div>
 <div>
 <%=f.select :genre, ["j-rock","j-pop","hip-hop","anime","chill"],{include_blank: "ジャンルを選択"},class: "bg-gray-700 rounded text-white h-8 text-xs mr-2" %>
@@ -9,12 +9,12 @@
 <%=f.submit "検索する",class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full h-8 text-xs"%>
 </div>
 <%end%>
-<h1>検索結果</h1>
+<h1 class="text-white text-lg w-[32rem] mx-auto mb-1.5">検索結果</h1>
   <% if @tracks.present? %>
     <% @tracks.each do |track| %>
-    <div class="flex">
+    <div class="flex w-[32rem] mx-auto mb-0.5">
       <div class="text-white">
-        <%=track.artists.first.name%>
+        <%="#{track.artists.first.name}/"%>
       </div>
       <div class="text-blue-600"><%=link_to "#{track.name}","#{track.uri}"%></div>
     </div>
