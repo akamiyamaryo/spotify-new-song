@@ -1,6 +1,6 @@
 <%=form_with url: "/search",method: :get,local: true,class: "flex justify-center m-10" do |f|%>
 <div>
-<%=f.text_field :playlist,class: "bg-gray-700 rounded focus:outline-none text-white h-8 text-xs mr-2"%>
+<%=f.text_field :playlist,placeholder: "playlistのリンクを入力",class: "bg-gray-700 rounded focus:outline-none text-white h-8 text-xs mr-2"%>
 </div>
 <div>
 <%=f.select :genre, ["j-rock","j-pop","hip-hop","anime","chill"],{include_blank: "ジャンルを選択"},class: "bg-gray-700 rounded text-white h-8 text-xs mr-2" %>

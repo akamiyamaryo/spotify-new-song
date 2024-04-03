@@ -1,5 +1,6 @@
 require 'rspotify'
 class MusicsController < ApplicationController
+    before_action :confirmation_login, only: [:spotify]
     def index
     end
 
@@ -56,13 +57,35 @@ class MusicsController < ApplicationController
         tracks.each do |key,value|
             value.each do |track|
                 if !Music.find_by(link: track.uri)
-                    t = Music.new(artist_name:track.played_at ,track_name: track.name,link: track.uri,release_date:key)
-                    if !t.save
-                        render 'search', status: :unprocessable_entity
-                    end
+                    t = {artist_name:track.artists.first ,track_name: track.name,link: track.uri,release_date:key}
                     @tracks_limit << t
                 end
             end
+        end
+    end
+    def create
+        params.permit(:tracks)
+        params[:tracks].each do |track|
+            t = Music.new(artist_name:track[:artist_name] ,track_name:track[:track_name],link: track[:link],release_date:track[:release_date])
+            if !t.save
+                redirect_to 'search', status: :unprocessable_entity
+            end
+        end
+        flash[:notice] = "データを保存しました"
+        redirect_to "/"
+    end
+
+    private
+
+    def confirmation_login
+        if current_user
+            if !current_user.admin
+                flash[:alert] = "管理者しか使えません"
+                redirect_to "/"
+            end
+        else
+            flash[:alert] = "ログインしてください"
+            redirect_to "/"
         end
     end
 end

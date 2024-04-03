@@ -3,15 +3,17 @@
 <%else%>
 <h1 class="text-white text-lg w-[32rem] mx-auto mb-1.5">検索結果</h1>
 <%@tracks_limit.each do |track|%>
-  <div class="flex flex w-[36rem] mx-auto mb-0.5">
-    <div class="text-white mr-1"><%=track.release_date%></div>
-    <div class="text-white">
-      <%="#{track.artist_name}/"%>
-    </div>
-    <div class="text-blue-600"><%=link_to "#{track.track_name}","#{track.link}"%></div>
+  <div class="flex w-[36rem] mx-auto mb-0.5">
+    <div class="text-white mr-1"><%=track[:release_date]%></div>
+    <div class="text-blue-600"><%=link_to "#{track[:track_name]}","#{track[:link]}"%></div>
   </div>
 <%end%>
 <%end%>
-
+<%puts @tracks_limit%>
+<div class="text-white mx-auto w-52">
+<%=link_to create_path(tracks:@tracks_limit),data: { "turbo-method": :post } do%>
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full h-8 text-xs">保存する</button>
+<%end%>
+</div>
 
 

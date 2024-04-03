@@ -8,12 +8,15 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/274c87489a.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'layout', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body class="h-full bg-black">
     <%= render 'layouts/header' %>
     <%= render 'shared/flash' %>
+    <%= render 'layouts/side_menu'%>
     <%= yield %>
   </body>
 </html>
