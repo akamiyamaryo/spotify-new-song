@@ -34,7 +34,7 @@ gem "rspotify"
 gem 'dotenv-rails'
 gem 'devise'
 
-gem "webpacker"
+
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
