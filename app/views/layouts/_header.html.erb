@@ -6,6 +6,11 @@
     <nav class="px-2 sm:px-4 py-2.5">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
           <%= link_to "Spotify-API", "/", class: "self-center text-white text-xl font-semibold whitespace-nowrap" %>
+          <%= link_to "/auth/spotify" do %>
+            <button id="btn-menu" class="text-white">
+              <i class="fa-solid fa-magnifying-glass" style="color: #74C0FC;"></i>
+            </button>
+            <% end %>
           <div class="w-full md:block md:w-auto">
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <% if current_user %>
