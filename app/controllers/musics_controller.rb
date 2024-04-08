@@ -1,6 +1,8 @@
 require 'rspotify'
 class MusicsController < ApplicationController
     before_action :confirmation_login, only: [:spotify]
+    before_action :search_check, only: [:search]
+
     def index
     end
 
@@ -85,6 +87,19 @@ class MusicsController < ApplicationController
             end
         else
             flash[:alert] = "ログインしてください"
+            redirect_to "/"
+        end
+    end
+
+    def search_check
+        if params[:playlist].blank?
+            flash[:alert] = "リンクを入力してください"
+            redirect_to "/"
+        elsif params[:genre].blank?
+            flash[:alert] = "ジャンルを選択してください"
+            redirect_to "/"
+        elsif !params[:playlist].split("/").last.index("si")
+            flash[:alert] = "リンクが正しくありません"
             redirect_to "/"
         end
     end
